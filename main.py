@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.ttk
 
 class Application(tkinter.ttk.Frame):
-	"""docstring for Application"""
+	"""Simple calculator only two values"""
 	def __init__(self, master = None):
 		super().__init__(master)
 
@@ -12,7 +12,7 @@ class Application(tkinter.ttk.Frame):
 
 		self.pack()
 		self.create_widgets()
-		self.master.title("Calculator v1(only plus")
+		self.master.title("Simple calculator on tkinter")
 		self.master.geometry("450x150+200+200")
 
 
@@ -69,110 +69,90 @@ class Application(tkinter.ttk.Frame):
 		self.btn_dot = tkinter.ttk.Button(self, text = ".", command = self.dot)
 		self.btn_dot.grid(row = 4, column = 0)
 
+		self.btn_clear = tkinter.ttk.Button(self, text = "CE", command = self.clear)
+		self.btn_clear.grid(row = 1, column = 5)
+
 	def dot(self):
 		text = self.entr.get()+"."
 		self.text_in_lbl.set(text)
+
 	def zero(self):
 		text = self.entr.get()+"0"
 		self.text_in_lbl.set(text)
+
 	def one(self):
 		text = self.entr.get()+"1"
 		self.text_in_lbl.set(text)
+
 	def two(self):
 		text = self.entr.get()+"2"
 		self.text_in_lbl.set(text)
+
 	def three(self):
 		text = self.entr.get()+"3"
 		self.text_in_lbl.set(text)
+
 	def four(self):
 		text = self.entr.get()+"4"
 		self.text_in_lbl.set(text)
+
 	def five(self):
 		text = self.entr.get()+"5"
 		self.text_in_lbl.set(text)
+
 	def six(self):
 		text = self.entr.get()+"6"
 		self.text_in_lbl.set(text)
+
 	def seven(self):
 		text = self.entr.get()+"7"
 		self.text_in_lbl.set(text)
+
 	def eigth(self):
 		text = self.entr.get()+"8"
 		self.text_in_lbl.set(text)
+
 	def nine(self):
 		text = self.entr.get()+"9"
 		self.text_in_lbl.set(text)
+
 	def plus(self):
 		text = self.entr.get()+"+"
 		self.text_in_lbl.set(text)
+
 	def minus(self):
 		text = self.entr.get()+"-"
 		self.text_in_lbl.set(text)
+
 	def multiply(self):
 		text = self.entr.get()+"*"
 		self.text_in_lbl.set(text)
+
 	def devide(self):
 		text = self.entr.get()+"/"
 		self.text_in_lbl.set(text)
 
+	def clear(self):
+		self.text_in_lbl.set("")
+
 	def result(self):
 		text = self.entr.get()
-		resulttext = self.entr.get()
 		result = 0.0
-
-		if "+" in text or "-" in text or "*" in text or "/" in text:
-			if "+" in text:
-				index1 = text.index("+")
-			else:
-				index1 = "0"
-			if "-" in text:
-				index2 = text.index("-")
-			else:
-				index2 = "0"
-			if "*" in text:
-				index3 = text.index("*")
-			else:
-				index3 = "0"
-			if "/" in text:
-				index4 = text.index("/")
-			else:
-				index4 = "0"
-			indexes = [index1,index2,index3,index4]
-			while "+" in text or "-" in text or "*" in text or "/" in text:
-				break
-			#else:
-			#	self.text_in_lbl.set(text+"="+text)
-		#except Exception as e:
-		#	print(e)
-		if resulttext!="":
-			self.text_in_lbl.set(resulttext+"="+str(result))
-		elif resulttext =="":
-			self.text_in_lbl.set("0")
+		if "+" in text:
+			index = text.index("+")
+			result= float(text[:index])+float(text[index+1:])
+		elif "-" in text:
+			index = text.index("-")
+			result= float(text[:index])-float(text[index+1:])
+		elif "*" in text:
+			index = text.index("*")
+			result= float(text[:index])*float(text[index+1:])
+		elif "/" in text:
+			index = text.index("/")
+			result= float(text[:index])/float(text[index+1:])
+		self.text_in_lbl.set(text+"="+str(result))
 
 
 root = tk.Tk()
 app = Application(master = root)
 root.mainloop()
-"""if "+"in text:
-						result += float(text[:index1])
-						text = text[index1+1:]
-						if "+" not in text and "+" not in text and "+" not in text and "+" not in text:
-							result+= float(text)
-					if "-"in text:
-						index = text.index("-")
-						result -= float(text[:index])
-						text = text[index+1:]
-						if "+" not in text and "-" not in text and "*" not in text and "+" not in text:
-							result+= float(text)
-					if "+"in text:
-						index = text.index("+")
-						result += float(text[:index])
-						text = text[index+1:]
-						if "+" not in text and "+" not in text and "+" not in text and "+" not in text:
-							result+= float(text)
-					if "/"in text:
-						index = text.index("/")
-						result += float(text[:index])
-						text = text[index+1:]
-						if "+" not in text and "+" not in text and "+" not in text and "+" not in text:
-							result+= float(text)"""
